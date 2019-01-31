@@ -1,0 +1,272 @@
+
+/// problem no 02
+/*
+Iftekhar Hossaion
+id : 11708013
+*/
+#include<bits/stdc++.h>
+#define ll long long
+#define pf printf
+#define sc scanf
+using namespace std;
+class Person
+{
+public:
+    string name,birthday;
+    string id;
+    Person() {};
+    Person(string name)
+    {
+        this->name=name;
+    }
+    void getdata2(string name , string birthday)
+    {
+       this-> name=name;
+        this->birthday=birthday;
+    }
+    void show()
+    {
+        cout<<"Name:"<<this->name<<endl;
+    }
+    void print();
+};
+void Person :: print()
+{
+    cout<<this->name<<endl;
+}
+class Author : public Person
+{
+    string City;
+    string co_number;
+public:
+    Author() {};
+    Author(string name,string co_number,string City): Person(name)
+    {
+        this->City=City;
+        this->co_number = co_number;
+    }
+    void viewAuthor()
+    {
+        show();
+        cout<<"Author city name:"<<this->City<<endl;
+        cout<<"contact number:"<< this->co_number<<endl;
+    }
+    void getAuthorName();
+};
+void Author :: getAuthorName()
+{
+    cout<<"Author Name: "<<this->name<<endl;
+}
+class Customer : public Person
+{
+    string co_number;
+public:
+    Customer() {};
+    Customer(string name,string co_number1):Person(name)
+    {
+        co_number = co_number1;
+    }
+    void viewCustomer();
+};
+void Customer :: viewCustomer()
+{
+    show();
+    cout<<"contact number : "<< this->co_number<<endl;
+
+}
+class Salesman : public Person
+{
+    int salesman_ID;
+    string co_number;
+public:
+    Salesman() {};
+    Salesman(string name,string a1,int b1) : Person(name)
+    {
+        salesman_ID=b1;
+        co_number = a1;
+    }
+    void getdata( string co,int no)
+    {
+        salesman_ID=no;
+        co_number=co;
+    }
+    void viewSalesman();
+};
+inline void Salesman :: viewSalesman()
+    {
+        show();
+        cout<<"id no:"<<this->salesman_ID<<endl;
+        cout<<"contact number:"<< this->co_number<<endl;
+    }
+class BookStore
+{
+    string name;
+    int id;
+public:
+    BookStore() {};
+    BookStore(string name,int id)
+    {
+        this->name=name;
+        this->id=id;
+    }
+    void show()
+    {
+        cout<<"Store Name:"<<this->name<<endl;
+        cout<<"Store id :"<<this->id<<endl;
+    }
+};
+class Category : public BookStore
+{
+public:
+    string name;
+
+    Category() {};
+    Category(string name)
+    {
+        this->name=name;
+    }
+    void getdata1(string name1)
+    {
+        name=name1;
+    }
+    void viewCategory();
+
+};
+inline void Category :: viewCategory()
+{
+    cout<<"Ctegory Name;  "<<this->name<<endl;
+}
+class Book
+{
+    string BookTitle;
+    int price;
+    int quantity;
+    int serial_no;
+    Author author;
+    Category category;
+public:
+
+    Book() {};
+    Book(string BookTitle1,Author author1,Category category1,int price1,int quantity1,int serial_no1)
+    {
+        BookTitle=BookTitle1;
+        price=price1;
+        quantity=quantity1;
+        serial_no=serial_no1;
+        author=author1;
+        category=category1;
+    }
+    void show();
+};
+void Book :: show()
+{
+    cout<<"Book Tittle: "<<this->BookTitle<<endl;
+    author.getAuthorName();
+    cout<<"Category: "<<this->category.name<<endl;
+    cout<<"Price of the Book: "<<this->price<<endl;
+    cout<<"Quantity Of the Book: "<<this->quantity<<endl;
+    cout<<"Serial No Of the Book: "<<this->serial_no<<endl;
+}
+int main()
+{
+    int i,j,k,cnt=0;
+    Category object[5];
+    object[0].getdata1("Fiction");
+    object[1].getdata1("non-fiction");
+    object[2].getdata1("Comics");
+    Customer *customer[12]=
+    {
+        new Customer("Sabbir","01834465728"),
+        new Customer("noman","01954107109"),
+        new Customer("sakib","01720876851"),
+        new Customer("Abir","01759016068"),
+        new Customer("saiful","01942496927"),
+        new Customer("sourov","01722156743"),
+        new Customer("romel","01654392690")
+    };
+    Author *author[10]=
+    {
+        new Author("Humayun Ahmed","01763439772","Shylet"),
+        new Author("Imdadul Haq Milon","01750972145","Dhaka"),
+        new Author("Samaresh Majumdar","01998873438","kalkatta"),
+        new Author("Rudra Mohammad Shahidullah","01759016068","Dhaka"),
+        new Author("Munir Chaudhury ","01979563217","Manikgang")
+    };
+     Book *book[3]=
+    {
+        new Book("Bishad Shindhu",*author[0],object[0],300,9,601),
+        new Book("Gitanjali",*author[1],object[1],225,14,602),
+        new Book("Abol Tabol",*author[2],object[2],350,16,603)
+    };
+    cout<<".... Author Details....."<<endl;
+    for(i=0; i<3; i++)
+    {
+        author[i]->viewAuthor();
+        cout<< "   "<<endl;
+    }
+    cout<<"   "<<endl;
+    cout<<".... Book Details....."<<endl;
+    for(i=0; i<3; i++)
+    {
+        book[i]->show();
+        cout<<endl;
+    }
+    cout<<"  "<<endl;
+
+    int MonthlyFrequency[6]= {3,0,4,8,9,3};
+
+    cout<<"...Customer Has Discount..."<<endl;
+    for(i=0; i<3; i++)
+    {
+        if(MonthlyFrequency[i]>=3)
+        {
+            customer[i]->viewCustomer();
+        }
+    }
+};
+/*
+.... Author Details.....
+Name:Humayun Ahmed
+Author city name:Shylet
+contact number:01763439772
+
+Name:Imdadul Haq Milon
+Author city name:Dhaka
+contact number:01750972145
+
+Name:Samaresh Majumdar
+Author city name:kalkatta
+contact number:01998873438
+
+
+.... Book Details.....
+Book Tittle: Bishad Shindhu
+Author Name: Humayun Ahmed
+Category: Fiction
+Price of the Book: 300
+Quantity Of the Book: 9
+Serial No Of the Book: 601
+
+Book Tittle: Gitanjali
+Author Name: Imdadul Haq Milon
+Category: non-fiction
+Price of the Book: 225
+Quantity Of the Book: 14
+Serial No Of the Book: 602
+
+Book Tittle: Abol Tabol
+Author Name: Samaresh Majumdar
+Category: Comics
+Price of the Book: 350
+Quantity Of the Book: 16
+Serial No Of the Book: 603
+
+
+...Customer Has Discount...
+Name:Sabbir
+contact number : 01834465728
+Name:sakib
+contact number : 01720876851
+*/
+
+
